@@ -1,0 +1,25 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:9.6
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_MULTIPLE_DATABASES=camunda_course_db
+      - POSTGRES_USER=camunda_course
+      - POSTGRES_PASSWORD=camunda_course
+      - MAX_CONNECTIONS=300
+    volumes:
+      - ./docker/postgres/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+      - ./docker/postgres/create-databases.sh:/docker-entrypoint-initdb.d/create-databases.sh
+    networks:
+      - custom
+
+
+networks:
+  custom:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.86.0.0/24

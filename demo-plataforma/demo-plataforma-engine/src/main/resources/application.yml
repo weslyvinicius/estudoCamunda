@@ -1,0 +1,37 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: demo-platafoma-engine
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    url: jdbc:h2:mem:enginedb
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+
+camunda:
+  bpm:
+    admin-user:
+      id: admin
+      password: admin
+      first-name: admin
+    auto-deployment-enabled: true
+    deployment-resource-pattern: classpath:/bpmns/**.bpmn
+
+
+server.url.rest.camunda: localhost:${server.port}/rest
+camunda.rest.deployment.create: /deployment/create
+
+logging.level.br.com.itau.co8.Feign.RestEngine: DEBUG

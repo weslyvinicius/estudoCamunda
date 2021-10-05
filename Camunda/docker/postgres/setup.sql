@@ -1,0 +1,1 @@
+alter database camunda_course_db OWNER TO camunda_course;

@@ -1,0 +1,55 @@
+spring.application.name: simpleApplication
+spring:
+  datasource:
+    hikari:
+      minIdle: 1000
+      idle-timeout: 3000000
+      maximumPoolSize: 3000
+      connectionTimeout: 3000000
+      leakDetectionThreshold: 3000000
+    url: jdbc:postgresql://localhost:5432/journey
+    username: uaiso
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+
+camunda:
+  bpm:
+    webapp:
+      index-redirect-enabled: true
+    admin-user:
+      id: admin
+      password: admin
+    application:
+      delete-upon-undeploy: false
+      scan-for-process-definitions: false
+      deploy-changed-only: true
+      resume-previous-versions: true
+      resume-previous-by: a value
+    job-execution:
+      enabled: true
+    metrics:
+      enabled: false
+      db-reporter-activate: false
+    database:
+      type: postgres
+      #schema-update: create-drop
+
+#camunda.bpm.auto-deployment-enabled: false
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+        errorDecoder: br.com.itau.journey.feign.decoder.IntegrationErrorDecoder
+  httpclient:
+    max-connections: 1000
+    max-connections-per-route: 500

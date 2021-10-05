@@ -1,0 +1,1 @@
+C:\DEV\zeebe\zeebe-broker-0.12.0\bin\zbctl deploy order-tracking.bpmn
